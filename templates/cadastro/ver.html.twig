@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Contato - {{contato.nome}} {% endblock %}
+
+{% block body %}
+<div class="row">
+	<div class="col-md-6">
+		<b>nome: </b><h1> {{ contato.nome }} </h1>
+		<b>email: </b><p> {{ contato.email }} </p>
+		<b>telefone: </b><p> {{ contato.telefone }} </p>
+		
+	</div>
+	<div class="col-md-6">
+		<div>
+		
+			<b>Endereço: </b>
+			<hr>
+		{% if endereco %}
+
+			
+				<div id="endereco">
+					<p>Quadra {{ endereco.quadra }} 
+					Número {{ endereco.numero }} </p>
+					<p><b>Observação:</b> {{ endereco.observacao }} </p>
+					<a href="/endereco/editar/{{ endereco.id }}" class="btn btn-light"> Editar Endereço</a>
+					<a href="#" class="btn btn-danger delete-endereco" data-id="{{ endereco.id }}"> Apagar Endereço</a>
+				</div>
+			
+
+		{% else %}
+			
+			<p> Nenhum endereço cadastrado! </p>
+			<a href="/endereco/novo/{{contato.id}}" class="btn btn-light"> Cadastrar Endereço</a>
+		{% endif %}	
+		</div>
+	</div>
+</div>
+<hr>
+
+<a href="/"> Voltar </a>	
+
+{% endblock %}
+
+{% block javascripts %}
+	<script src="/js/main.js" type="text/javascript" ></script>
+
+{% endblock %}

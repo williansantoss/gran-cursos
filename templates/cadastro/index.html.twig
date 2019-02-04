@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Gran Cursos - Contatos {% endblock %}
+
+{% block body %}
+
+	<h2> Lista de Contatos </h2>
+	
+	{% if contatos %}
+		<table id="contatos" class="table table-striped">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Ações</th>
+				</tr>	
+			</thead>
+			<tbody>
+				{% for contato in contatos %}
+				<tr>
+					<td> {{ contato.nome }} </td>
+					<td>
+						<a href="/contato/{{ contato.id }}" class="btn btn-dark"> detalhes </a>
+						<a href="/contato/editar/{{ contato.id }}" class="btn btn-light"> Editar </a>
+						<a href="#" class="btn btn-danger delete-contato" data-id="{{ contato.id }}"> Apagar </a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<hr>
+		<p> Nenhum contato cadastrado! </p>
+		<a href="/contato/novo" class="btn btn-light"> Cadastrar Contato</a>
+	{% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+	<script src="/js/main.js" type="text/javascript" ></script>
+
+{% endblock %}
